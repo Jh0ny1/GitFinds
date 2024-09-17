@@ -1,0 +1,92 @@
+.conteudo {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.background {
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0; /* Certifica-se de que começa no topo da página */
+    z-index: -1; /* Envia a imagem de fundo para trás */
+}
+
+.info {
+    width: 60%;
+    margin-right: 90px;
+    margin-top: 40px;
+    position: relative; /* Garante que fique na frente da imagem de fundo */
+    z-index: 1; /* Coloca a informação acima da imagem */
+}
+
+input {
+    border-radius: 12px;
+    /* border: 1px solid white; Defina a borda para ser visível */
+    background: transparent;
+    font-size: 18px;
+    padding: 10px;
+    width: 85%;
+    text-align: center; /* Centraliza o texto dentro do input */
+    box-sizing: border-box; /* Inclui o padding na largura total do input */
+    margin-top: 25px;
+    color: #8b949e ;
+}
+
+.button {
+    padding: 10px 20px;
+    color: #ffffff ;
+    margin-left: 5px;
+    border-radius: 12px;
+    /* border: 1px solid white; */
+    background-color: #444444; /* Cor de fundo */
+    /* color: white; Cor do texto */
+    font-size: 16px;
+    cursor: pointer; /* Aponta para que é um botão clicável */
+    transition: background-color 0.3s ease; /* Animação suave na cor de fundo */
+}
+
+.button:hover {
+    background-color: #30363d   ; /* Cor de fundo quando o mouse passa por cima */
+}
+
+.button:active {
+    background-color: #111111  ; /* Cor de fundo quando o botão é pressionado */
+}
+
+.perfil{
+    display: flex;
+    margin: 40px 0;
+}
+.profile{
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    border: 2px solid white;
+    margin-right: 32px;
+}
+
+.perfil h3{
+    color: #c9d1d9 ;
+    font-size: 30px;
+
+}
+
+.perfil abc {
+    display: block;
+    color: #c9d1d9 ;
+    font-size: 15px;
+
+}
+.perfil p{
+    color: #8b949e ;
+    font-size: 20px;
+    margin: 20px 0 0 0;
+}
+.repositorio{
+    font-size: 32px;
+    color: #c9d1d9 ;
+    margin: 12px 0;
+    text-align: center;
+}
