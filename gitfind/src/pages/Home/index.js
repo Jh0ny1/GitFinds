@@ -1,81 +1,87 @@
-
 import { useState } from "react";
 import { Header } from "../../components/Header";
-import background from '../../assets/background.png'
-import ItemList from "../../components/List"
+import background from '../../assets/background.png';
+import ItemList from "../../components/List/index"; // Importando o componente ItemRepo
 import './styles.css';
 
-
 function App() {
-  const[user, setUser]= useState('');
-  const[currentUser, setCurrentUser] = useState(null);
-  const[repos, setRepos] = useState(null);
+  const [user, setUser] = useState('');
+  const [currentUser, setCurrentUser] = useState(null);
+  const [repos, setRepos] = useState([]);
 
-
-
-  const handleGetData=async() =>{
+  const handleGetData = async () => {
     const userData = await fetch(`https://api.github.com/users/${user}`);
     const newUser = await userData.json();
-    // console.log(newUser);
 
-    if(newUser.name){
-      const{avatar_url, name, bio, login} = newUser;
-      setCurrentUser({avatar_url, name, bio, login})
+    if (newUser.name) {
+      const { avatar_url, name, bio, login } = newUser;
+      setCurrentUser({ avatar_url, name, bio, login });
 
       const reposData = await fetch(`https://api.github.com/users/${user}/repos`);
       const newRepos = await reposData.json();
 
-      if(newRepos.length){
+      if (newRepos.length) {
         setRepos(newRepos);
       }
-      
+    } else {
+      alert('Usuário não encontrado');
     }
-  }
-  return ( 
+  };
+
+  const handleRemoveRepo = (repoId) => {
+    const filteredRepos = repos.filter(repo => repo.id !== repoId);
+    setRepos(filteredRepos);
+  };
+
+  return (
     <div className="App">
-      <Header/>
+      <Header />
       <div className="conteudo">
-        <img src={background} className="background" alt="background app"/>
-        <div className="info"> 
+        <img src={background} className="background" alt="background app" />
+        <div className="info">
           <div>
-          <input name="usuario" value={user} onChange={event => setUser(event.target.value)} placeholder="@username"/>
-          <button onClick={handleGetData} className="button">Buscar</button>
-            </div>
-
-
-            {currentUser?.name ? (<>
-
-
-            <div className="perfil">
-            <img
-            src={currentUser.avatar_url}
-            className="profile"
-            alt="perfil"
+            <input
+              name="usuario"
+              value={user}
+              onChange={(event) => setUser(event.target.value)}
+              placeholder="@username"
             />
-          <div>
-          <h3>{currentUser.name}</h3>
-          <abc>@{currentUser.login}</abc>
-          <p>{currentUser.bio}</p>
+            <button onClick={handleGetData} className="button">Buscar</button>
           </div>
-          </div>
-          <hr/>
-            </>
-          ): null}
 
+          {currentUser?.name ? (
+            <>
+              <div className="perfil">
+                <img
+                  src={currentUser.avatar_url}
+                  className="profile"
+                  alt="perfil"
+                />
+                <div>
+                  <h3>{currentUser.name}</h3>
+                  <abc>@{currentUser.login}</abc>
+                  <p>{currentUser.bio}</p>
+                </div>
+              </div>
+              <hr />
+            </>
+          ) : null}
 
           {repos?.length ? (
             <div>
-            <h4 className="repositorio">
-              Repositórios
-              </h4>
-            {repos.map(repo=>(
-              <ItemList title={repo.name} description={repo.description} />
-            ))}
-          </div>
-          ): null}
+              <h4 className="repositorio">Repositórios</h4>
+              {repos.map((repo) => (
+                <ItemList 
+                  key={repo.id}
+                  repo={repo}
+                  onRemoveRepo={() => handleRemoveRepo(repo.id)}
+                ItemList />
+              ))}
+            </div>
+          ) : null}
         </div>
       </div>
-</div>
+    </div>
   );
 }
 

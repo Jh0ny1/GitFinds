@@ -4,12 +4,28 @@
     color: #58a6ff ;
     font-size: 25px;
     margin: 25px 0;
-
+    font-weight: bold;
 }
 .item-list p{
 color: #8b949e ;
-font-size: 15px;
-margin: 20px 0;
+font-size: 18px;
+margin: 20px 0 5px;
+font-weight: bold;
 }
 
+.item-list a  
+{
+font-size:15px;
+color: #3fb950;
+margin: 15px 0px;
+cursor: pointer;
+text-decoration: none;
+}
 
+.item-list remover  
+{
+font-size:15px;
+color: #f85149;
+margin: 15px 0px;
+cursor: pointer;
+}

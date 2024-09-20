@@ -36,11 +36,11 @@ input {
 
 .button {
     padding: 10px 20px;
-    color: #ffffff ;
+    color: #8b949e ;
     margin-left: 5px;
     border-radius: 12px;
     /* border: 1px solid white; */
-    background-color: #444444; /* Cor de fundo */
+    background-color: transparent; /* Cor de fundo */
     /* color: white; Cor do texto */
     font-size: 16px;
     cursor: pointer; /* Aponta para que é um botão clicável */
